@@ -89,7 +89,7 @@ def main():
     else:
         print('Images:')
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id'])) #это потом удалить
+            print('{0} ({1})'.format(item['name'], item['id']))
 
 
     for item in items:
@@ -113,7 +113,7 @@ def main():
     else:
         print('Videos') 
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id'])) #тоже удалить
+            print('{0} ({1})'.format(item['name'], item['id']))
 
 
     for item in items:
