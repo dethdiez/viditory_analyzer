@@ -1,0 +1,3 @@
+import quickstart
+
+quickstart.main()

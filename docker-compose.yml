@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+      - "8080:8080"
+    volumes:
+      - ./api:/app
+    links:
+      - mongo
+
+  apache:
+    image: httpd:2.4
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/usr/local/apache2/htdocs
+    links:
+      - api
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - ./database:/data/db
+
+  
