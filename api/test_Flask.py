@@ -9,14 +9,15 @@ db = client.tododb
 
 item_doc = {'task':'task1', 'description':'description1'}
 
-@app.route("/")
-def start():
-	#quickstart.get_new_credentials()
-	quickstart.main()
-	return "Hello World!"
-#	_items = db.tododb.find()
-#	items = [item for item in _items]
-#	return render_template('todo.html', items=items)
+@app.route("/auth")
+def auth():
+	credentials = quickstart.get_new_credentials()
+	return credentials
+
+@app.route("/analyze")
+def analyze():
+	quickstart.start()
+	return True
 
 @app.route('/new', methods=['POST'])
 def new():

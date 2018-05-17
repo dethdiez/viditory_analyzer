@@ -1,0 +1,20 @@
+{
+	"videos":2,
+	"images":20,
+	"video_average_duration_ts":644216,
+	"video_average_duration":9.343195,
+	"video_average_size":9833387,
+	"images_average_size":112522,
+	"most_popular_video_format":".mp4",
+	"most_popular_image_format":".png",
+	"years_video":{
+		"2017":2
+	},
+	"years_photo":{
+		"2018":3,
+		"2017":12,
+		"2016":2,
+		"2015":1,
+		"2014":2
+	}
+}

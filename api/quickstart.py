@@ -4,6 +4,8 @@ import os
 import io
 import six
 
+import pdb
+
 from six.moves import http_client
 from apiclient import discovery
 from apiclient import http
@@ -11,6 +13,7 @@ from apiclient.http import MediaIoBaseDownload
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
+from analyzer import StartImageAnalysis, StartVideoAnalysis
 
 try:
     import argparse
@@ -18,10 +21,10 @@ try:
 except ImportError:
     flags = None
 
-
-SCOPES = 'https://www.googleapis.com/auth/drive' 
-CLIENT_SECRET_FILE = 'client_secret_all_cred.json' 
-APPLICATION_NAME = 'Drive API Python Quickstart' 
+#Данные для авторизации
+SCOPES = 'https://www.googleapis.com/auth/drive' #права
+CLIENT_SECRET_FILE = 'client_secret_all_cred.json' #клиентский файл с данными для доступа
+APPLICATION_NAME = 'Drive API Python Quickstart' #имя проекта (указал дефолтное)
 
 
 def get_credentials():
@@ -33,7 +36,7 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    home_dir = os.path.expanduser('~') 
+    home_dir = os.path.expanduser('~') #здесь опционально вставить доступ к рандомной директории (попросить пользователя открыть доступ к директории по ссылке)
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
@@ -55,7 +58,8 @@ def get_credentials():
 def get_new_credentials():
     home_dir = os.path.expanduser('/app')
     credential_dir = os.path.join(home_dir, '.credentials')
-#    os.makedirs(credential_dir)
+    if not os.path.exists(credential_dir):
+        os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir,
                                    'drive-python-quickstart.json')
 
@@ -74,12 +78,15 @@ def start():
     main()
 
 def main():
-#    credentials = get_credentials()
     credentials = get_credentials()
-    http = credentials.authorize(httplib2.Http())
+#    pdb.set_trace()
+#    StartImageAnalysis(credentials)
+    StartVideoAnalysis(credentials)
+#    credentials = get_new_credentials()
+"""    http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
-
+    #ищем фотографии на диске (опционально добавить прохождение по дереву)
     results = service.files().list(
         q="mimeType contains 'image'", 
         fields="nextPageToken, files(id, name)").execute()
@@ -89,9 +96,9 @@ def main():
     else:
         print('Images:')
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id']))
+            print('{0} ({1})'.format(item['name'], item['id'])) #это потом удалить
 
-
+    #выкачиваем найденные файлы (после закачки сразу отправить на анализ, после удалить)
     for item in items:
         request = service.files().get_media(fileId=item['id'])
         fh = io.FileIO(item['name'], mode='wb')
@@ -103,7 +110,7 @@ def main():
 
     print('')
 
-
+    #аналогично с видео
     results = service.files().list(
         q="mimeType contains 'video'",
         fields="nextPageToken, files(id, name)").execute()
@@ -113,9 +120,9 @@ def main():
     else:
         print('Videos') 
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id']))
+            print('{0} ({1})'.format(item['name'], item['id'])) #тоже удалить
 
-
+    #выкачиваем найденные файлы (после закачки сразу отправить на анализ, после удалить)
     for item in items:
         request = service.files().get_media(fileId=item['id'])
         fh = io.FileIO(item['name'], mode='wb')
@@ -125,7 +132,7 @@ def main():
             status, done = downloader.next_chunk()
             print ("Download %d%%." % int(status.progress() * 100))
 
-    print('')
+    print('') """
 
 if __name__ == '__main__':
     main()

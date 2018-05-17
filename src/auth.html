@@ -19,14 +19,16 @@
 	$( document ).ready(function() {
 		$('#submit_login').click(function() {
 			$.ajax({ 
-				url: 'http://localhost:5000/api/Student/'+$("#login").val(), 
-				type: 'GET', 
-				success: function(data){ 
-					window.location.replace("http://localhost:1337/main.html");
-					//$(data).find('#reviews .card').appendTo('#reviews'); 
+				url: 'http://localhost:5000/auth',
+				type: 'GET',
+				beforeSend: function() { console.log('start'); },
+				complete: function() { console.log("finish"); },
+				success: function(){ 
+					console.log('success');
+					window.location.replace("http://localhost/analyze.html");
 				}, 
 				error: function(data) { 
-					alert('Auth error'); //or whatever 
+					alert('error');
 				} 
 			});
 			
@@ -39,14 +41,14 @@
 
 <div class="container">
 	<div class="row">
-		<form class="form-horizontal" method="POST" action="" style="margin-top:300px; width:800px; margin-left:300px;">
+		<form class="form-horizontal" method="POST" action="" style="margin-top:145px; width:300px; margin-left:275px;">
 			<div class="form-group">
 				<div class="col-md-4 col-md-offset-4 col-sm-12">
 					<button id="submit_login" type="button" class="btn btn-info">Войти</button> 
 				</div>
 			</div>
 			<div class="col-md-4 col-md-offset-4 col-sm-12" style="display:none;" id="error">
-				Неверный логин
+				Error
 			</div>
 		</form>
 	</div>		
