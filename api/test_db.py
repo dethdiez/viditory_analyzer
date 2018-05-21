@@ -8,7 +8,7 @@ client = MongoClient('mongodb://0.0.0.0:27017/')
 db = client['diplom_mongo_1']
 
 #post = {"author": "Yury", "text": "test post", "tags": ["mongoDB","python"]}
-jsonFile = open("1WNZ0i15jNe4nt-chjayskJhHZ3lssHuI.json", "r")
+jsonFile = open("example.json", "r")
 data = json_util.loads(jsonFile.read())
 posts = db.posts
 post_id = posts.insert(data, check_keys=False)
