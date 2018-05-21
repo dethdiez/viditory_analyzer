@@ -133,7 +133,13 @@ def AnalyzeVideo(item):
     InsertDoc(jsonName)
     os.remove(jsonName)
 
-    gc.collect()
+    print('')
+    print('')
+    print('')
+    print(gc.collect())
+    print('')
+    print('')
+    print('')
     
 
 
