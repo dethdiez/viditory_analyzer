@@ -37,6 +37,8 @@ def DownloadItem(item):
     
     name = item['id'] + item['name']
     os.rename(item['name'], name)
+
+    AnalyzeVideo(item)
     return True
 
 '''
@@ -153,9 +155,9 @@ def AnalyzeVideos(owner):
     downloader1.start()
     downloader1.join()
 
-    analyzer1 = Process(target = StartAnalyzeVideos, args = (listItems,))
-    analyzer1.start()
-    analyzer1.join()
+#    analyzer1 = Process(target = StartAnalyzeVideos, args = (listItems,))
+#    analyzer1.start()
+#    analyzer1.join()
 
 
 def StartDownloadImages(items):
