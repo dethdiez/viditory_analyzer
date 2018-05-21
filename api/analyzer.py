@@ -6,9 +6,7 @@ import six
 import time
 import json
 import hashlib
-#import wand.image
 from subprocess import call
-#from wand.image import Image
 from test_db import InsertDoc
 
 from six.moves import http_client
