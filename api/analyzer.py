@@ -130,6 +130,7 @@ def AnalyzeVideo(item):
     os.remove(name)
 
     InsertDoc(jsonName)
+    os.remove(jsonName)
     
 
 
