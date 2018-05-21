@@ -6,6 +6,7 @@ import six
 import time
 import json
 import hashlib
+import gc
 from subprocess import call
 from test_db import InsertDoc
 
@@ -131,6 +132,8 @@ def AnalyzeVideo(item):
 
     InsertDoc(jsonName)
     os.remove(jsonName)
+
+    gc.collect()
     
 
 
