@@ -161,11 +161,11 @@ def AnalyzeVideos(owner):
                 listItems.append(item)
                 i+=1
 
-    for item in listItems:
-        DownloadItem(item)
-#    downloader1 = Process(target = StartDownloadVideos, args = (listItems,))
- #   downloader1.start()
-  #  downloader1.join()
+#    for item in listItems:
+#        DownloadItem(item)
+    downloader1 = Process(target = StartDownloadVideos, args = (listItems,))
+    downloader1.start()
+    downloader1.join()
 
 #    analyzer1 = Process(target = StartAnalyzeVideos, args = (listItems,))
 #    analyzer1.start()
