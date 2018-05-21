@@ -23,10 +23,10 @@ try:
 except ImportError:
     flags = None
 
-#Данные для авторизации
-SCOPES = 'https://www.googleapis.com/auth/drive' #права
-CLIENT_SECRET_FILE = 'client_secret_all_cred.json' #клиентский файл с данными для доступа
-APPLICATION_NAME = 'Drive API Python Quickstart' #имя проекта (указал дефолтное)
+
+SCOPES = 'https://www.googleapis.com/auth/drive' 
+CLIENT_SECRET_FILE = 'client_secret_all_cred.json' 
+APPLICATION_NAME = 'Drive API Python Quickstart' 
 
 
 def get_credentials():
@@ -38,7 +38,7 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    home_dir = os.path.expanduser('~') #здесь опционально вставить доступ к рандомной директории (попросить пользователя открыть доступ к директории по ссылке)
+    home_dir = os.path.expanduser('~') 
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
@@ -91,7 +91,7 @@ def main():
 """    http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
-    #ищем фотографии на диске (опционально добавить прохождение по дереву)
+    
     results = service.files().list(
         q="mimeType contains 'image'", 
         fields="nextPageToken, files(id, name)").execute()
@@ -101,9 +101,9 @@ def main():
     else:
         print('Images:')
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id'])) #это потом удалить
+            print('{0} ({1})'.format(item['name'], item['id'])) 
 
-    #выкачиваем найденные файлы (после закачки сразу отправить на анализ, после удалить)
+    
     for item in items:
         request = service.files().get_media(fileId=item['id'])
         fh = io.FileIO(item['name'], mode='wb')
@@ -115,7 +115,7 @@ def main():
 
     print('')
 
-    #аналогично с видео
+    
     results = service.files().list(
         q="mimeType contains 'video'",
         fields="nextPageToken, files(id, name)").execute()
@@ -125,9 +125,9 @@ def main():
     else:
         print('Videos') 
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id'])) #тоже удалить
+            print('{0} ({1})'.format(item['name'], item['id'])) 
 
-    #выкачиваем найденные файлы (после закачки сразу отправить на анализ, после удалить)
+    
     for item in items:
         request = service.files().get_media(fileId=item['id'])
         fh = io.FileIO(item['name'], mode='wb')
