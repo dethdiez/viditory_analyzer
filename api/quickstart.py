@@ -3,6 +3,7 @@ import httplib2
 import os
 import io
 import six
+import statistics
 
 import pdb
 
@@ -14,6 +15,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 from analyzer import StartImageAnalysis, StartVideoAnalysis
+from test_db import CleanDB
 
 try:
     import argparse
@@ -79,9 +81,12 @@ def start():
 
 def main():
     credentials = get_credentials()
+    owner = "densaflorativa@gmail.com"
+    CleanDB();
 #    pdb.set_trace()
-#    StartImageAnalysis(credentials)
-    StartVideoAnalysis(credentials)
+    StartImageAnalysis(credentials, owner)
+    StartVideoAnalysis(credentials, owner)
+    statistics.GetStat()
 #    credentials = get_new_credentials()
 """    http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)

@@ -6,8 +6,10 @@ import six
 import time
 import json
 import hashlib
+import wand.image
 from subprocess import call
 from wand.image import Image
+from test_db import InsertDoc
 
 from six.moves import http_client
 from apiclient import discovery
@@ -45,18 +47,34 @@ def AnalyzeImage(item):
     print('{0} ({1})'.format(name, item['id']))
     with Image(filename=name) as img:
         data = {}
+        data['type'] = 'image'
+        hasher = hashlib.md5()
+        with open(name, 'rb') as afile:
+            buf = afile.read()
+            hasher.update(buf)
+        print(hasher.hexdigest())
+        data['md5'] = hasher.hexdigest()
+        data['name'] = item['name']
+        data['id'] = item['id']
+        data['weight'] = os.stat(name).st_size
+        data['format'] = img.format
+
         for k, v in img.metadata.items():
             data[k] = v
         with open ('%s.json'%item['id'], 'w+') as res:
             json.dump(data, res)
     os.remove(name)
+
+    InsertDoc('%s.json'%item['id'])
+
     return True
 
 
-def AnalyzeImages():
+def AnalyzeImages(owner):
     #ищем фотографии на диске (опционально добавить прохождение по дереву)
     results = globalService.files().list(
-        q="mimeType contains 'image'", 
+        q="mimeType contains 'image' and '%s' in owners"%owner, 
+#        q="mimeType contains 'image'"
         fields="nextPageToken, files(id, name)").execute()
     items = results.get('files', [])
     if not items:
@@ -85,22 +103,40 @@ def AnalyzeVideo(item):
     jsonName = item['id'] + ".json"
     f = open(jsonName, "w")
     call (["ffprobe","-i",name,"-print_format","json","-show_streams","-show_format","-show_data"], stdout=f)
- 
+    f.close()
+
+    data = {}
+    data['type'] = 'video'
     hasher = hashlib.md5()
     with open(name, 'rb') as afile:
         buf = afile.read()
         hasher.update(buf)
+    print(hasher.hexdigest())
+    data['md5'] = hasher.hexdigest()
+    data['name'] = item['name']
+    data['id'] = item['id']
+    data['extension'] = os.path.splitext(name)[1]
+    jf = open (jsonName)
+    js = jf.read()
+    jd = json.loads(js)
+    for k,v in jd.items():
+        data[k] = v
+ #       for k1,v1 in data[k].items():
+ #           if '.' in k1:
+ #               data[k].pop(k1)
+    print (jd['format']['filename'])
+    with open (jsonName, 'w+') as res:
+        json.dump(data, res)
+    os.remove(name)
+
+    InsertDoc(jsonName)
     
-    data = '{"md5_hash":%s}'%hasher.hexdigest()
-    fp = json.loads(jsonName)
-    f = json.dump([data, fp])
-    f.close()
 
 
-def AnalyzeVideos():
+def AnalyzeVideos(owner):
     #аналогично с видео
     results = globalService.files().list(
-        q="mimeType contains 'video'",
+        q="mimeType contains 'video' and '%s' in owners"%owner,
         fields="nextPageToken, files(id, name)").execute()
     items = results.get('files', [])
     if not items:
@@ -143,21 +179,21 @@ def StartDownloadVideos(items):
     pool4.map(DownloadItem, items)
 
 
-def StartImageAnalysis(credentials):
+def StartImageAnalysis(credentials, owner):
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
     global globalService
     globalService = service
 
-    AnalyzeImages()
+    AnalyzeImages(owner)
 
-def StartVideoAnalysis(credentials):
+def StartVideoAnalysis(credentials, owner):
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
     global globalService
     globalService = service
-    AnalyzeVideos()
+    AnalyzeVideos(owner)
     
     return True
