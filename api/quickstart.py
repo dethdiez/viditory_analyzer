@@ -84,7 +84,7 @@ def main():
     owner = "sova@auditory.ru"
     CleanDB();
 #    pdb.set_trace()
-    StartImageAnalysis(credentials, owner)
+#    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
     statistics.GetStat()
 #    credentials = get_new_credentials()

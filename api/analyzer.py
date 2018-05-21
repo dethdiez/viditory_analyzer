@@ -8,7 +8,7 @@ import json
 import hashlib
 import wand.image
 from subprocess import call
-from wand.image import Image
+#from wand.image import Image
 from test_db import InsertDoc
 
 from six.moves import http_client
@@ -41,7 +41,7 @@ def DownloadItem(item):
     os.rename(item['name'], name)
     return True
 
-
+'''
 def AnalyzeImage(item):
     name = item['id'] + item['name']
     print('{0} ({1})'.format(name, item['id']))
@@ -68,7 +68,7 @@ def AnalyzeImage(item):
     InsertDoc('%s.json'%item['id'])
 
     return True
-
+'''
 
 def AnalyzeImages(owner):
     #ищем фотографии на диске (опционально добавить прохождение по дереву)
