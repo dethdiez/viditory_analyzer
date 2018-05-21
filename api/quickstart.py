@@ -81,7 +81,7 @@ def start():
 
 def main():
     credentials = get_credentials()
-    owner = "densaflorativa@gmail.com"
+    owner = "sova@auditory.ru"
     CleanDB();
 #    pdb.set_trace()
     StartImageAnalysis(credentials, owner)
