@@ -134,7 +134,7 @@ def StatVideos():
 	return stat
 
 def GetStat():
-	imgStat = StatImages()
+#	imgStat = StatImages()
 	videoStat = StatVideos()
 	stat = {"images": imgStat, "videos": videoStat}
 	print(stat)
