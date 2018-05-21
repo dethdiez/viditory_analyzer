@@ -132,7 +132,6 @@ def AnalyzeVideo(item):
 
 
 def AnalyzeVideos(owner):
-    #аналогично с видео
     results = globalService.files().list(
         q="mimeType contains 'video' and '%s' in owners"%owner,
         fields="nextPageToken, files(id, name)").execute()
@@ -141,14 +140,18 @@ def AnalyzeVideos(owner):
         print('No videos found.')
     else:
         print('Videos') 
+        i = 0
+        listItems = []
         for item in items:
-            print('{0} ({1})'.format(item['name'], item['id'])) #тоже удалить
+            if i < 20:
+                print('{0} ({1})'.format(item['name'], item['id']))
+                listItems.append(item)
 
-    downloader1 = Process(target = StartDownloadVideos, args = (items,))
+    downloader1 = Process(target = StartDownloadVideos, args = (listItems,))
     downloader1.start()
     downloader1.join()
 
-    analyzer1 = Process(target = StartAnalyzeVideos, args = (items,))
+    analyzer1 = Process(target = StartAnalyzeVideos, args = (listItems,))
     analyzer1.start()
     analyzer1.join()
 
