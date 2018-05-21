@@ -146,6 +146,7 @@ def AnalyzeVideos(owner):
             if i < 20:
                 print('{0} ({1})'.format(item['name'], item['id']))
                 listItems.append(item)
+                i+=1
 
     downloader1 = Process(target = StartDownloadVideos, args = (listItems,))
     downloader1.start()
