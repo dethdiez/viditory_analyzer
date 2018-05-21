@@ -9,8 +9,8 @@ import pdb
 
 from six.moves import http_client
 from googleapiclient import discovery
-from apiclient import http
-from apiclient.http import MediaIoBaseDownload
+from googleapiclient import http
+from googleapiclient.http import MediaIoBaseDownload
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage

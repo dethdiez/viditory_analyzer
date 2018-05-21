@@ -10,9 +10,9 @@ from subprocess import call
 from test_db import InsertDoc
 
 from six.moves import http_client
-from apiclient import discovery
-from apiclient import http
-from apiclient.http import MediaIoBaseDownload
+from googleapiclient import discovery
+from googleapiclient import http
+from googleapiclient.http import MediaIoBaseDownload
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
