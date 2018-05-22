@@ -120,7 +120,9 @@ def AnalyzeVideo(item):
     with open(name, 'rb') as afile:
         print('file opened')
         buf = afile.read()
+        print('file read')
         hasher.update(buf)
+        print('hasher update')
     print(hasher.hexdigest())
     data['md5'] = hasher.hexdigest()
     data['name'] = item['name']
