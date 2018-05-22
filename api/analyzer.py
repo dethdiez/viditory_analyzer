@@ -116,7 +116,9 @@ def AnalyzeVideo(item):
     data = {}
     data['type'] = 'video'
     hasher = hashlib.md5()
+    print('hasher here')
     with open(name, 'rb') as afile:
+        print('file opened')
         buf = afile.read()
         hasher.update(buf)
     print(hasher.hexdigest())
