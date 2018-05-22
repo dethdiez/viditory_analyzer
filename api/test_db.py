@@ -24,6 +24,7 @@ def CleanDB():
 	posts.delete_many({})
 
 def InsertDoc(name):
+	print('start insert %s'%name)
 	client = MongoClient('mongodb://0.0.0.0:27017/')
 	db = client['diplom_mongo_1']
 
@@ -32,6 +33,6 @@ def InsertDoc(name):
 	data = json_util.loads(jsonFile.read())
 	posts = db.posts
 	post_id = posts.insert(data, check_keys=False)
-	cursor = posts.find({})
-	for document in cursor: 
-		print(document)
+#	cursor = posts.find({})
+#	for document in cursor: 
+#		print(document)
