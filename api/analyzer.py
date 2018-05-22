@@ -111,6 +111,7 @@ def AnalyzeVideo(item):
     f = open(jsonName, "w")
     call (["ffprobe","-i",name,"-print_format","json","-show_streams","-show_format","-show_data"], stdout=f)
     f.close()
+    print("data extracted to %s"%jsonName)
 
     data = {}
     data['type'] = 'video'
