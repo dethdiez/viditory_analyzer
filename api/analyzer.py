@@ -9,6 +9,7 @@ import hashlib
 import gc
 from subprocess import call
 from test_db import InsertDoc
+from broken import CheckBroken
 
 from six.moves import http_client
 from googleapiclient import discovery
