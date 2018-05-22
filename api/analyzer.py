@@ -35,7 +35,7 @@ def DownloadItem(item):
     while done is False:
         status, done = downloader.next_chunk()
         print ("Download %d%%." % int(status.progress() * 100))
-    
+    print ("Download complete")
     name = item['id'] + item['name']
     os.rename(item['name'], name)
 
