@@ -27,6 +27,7 @@ except ImportError:
     flags = None
 
 def DownloadItem(item):
+    time.sleep(3)
     print('')
     print('')
     print('')
