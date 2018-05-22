@@ -18,7 +18,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 from multiprocessing import Pool as ThreadPool
-from multiprocessing import Process
+from multiprocessing import Process, Queue
 
 try:
     import argparse
@@ -206,8 +206,14 @@ def StartAnalyzeVideos(items):
 
 def StartDownloadVideos(items):
     print('StartDownload')
-    pool4 = ThreadPool(1) # Sets the pool size to 4
-    pool4.map(DownloadItem, items)
+    queue = Queue()
+    for item in items:
+        queue.put(item)
+    downloader1 = Process(target = DownloadItem, args = (queue,))
+    downloader1.start()
+    downloader1.join()
+#    pool4 = ThreadPool(1) # Sets the pool size to 4
+#    pool4.map(DownloadItem, items)
 
 
 def StartImageAnalysis(credentials, owner):
