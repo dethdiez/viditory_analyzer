@@ -75,7 +75,7 @@ def StatVideos():
 	count = 0
 	fileSize = 0
 	copies = 0
-	durationMillis = 0
+	duration = 0
 	copiesId = {}
 	copiesIdList = []
 	videoFormat = {}
