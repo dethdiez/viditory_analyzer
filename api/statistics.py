@@ -118,7 +118,7 @@ def StatVideos():
 	
 	maxFormatCount = 0
 	maxFormatName = ''
-	for k,v in imgFormat.items():
+	for k,v in videoFormat.items():
 		if v > maxFormatCount:
 			maxFormatCount = v
 			maxFormatName = k
