@@ -40,11 +40,9 @@ def DownloadItem(item):
         print ("Download %d%%." % int(status.progress() * 100))
     print ("Download complete")
     name = item['id'] + item['name']
+    print('*********')
     os.rename(item['name'], name)
-
-#    analyzer = Process(target = AnalyzeVideo,args = (item,))
-#    analyzer.start()
-#    analyzer.join()
+    print('---------')
     AnalyzeVideo(item)
     return True
 
