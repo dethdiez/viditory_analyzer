@@ -115,6 +115,7 @@ def AnalyzeVideo(item):
 
     data = {}
     data['type'] = 'video'
+    '''
     hasher = hashlib.md5()
     print('hasher here')
     with open(name, 'rb') as afile:
@@ -125,6 +126,8 @@ def AnalyzeVideo(item):
         print('hasher update')
     print(hasher.hexdigest())
     data['md5'] = hasher.hexdigest()
+    '''
+    data['md5'] = item['md5Checksum']
     data['name'] = item['name']
     data['id'] = item['id']
     data['extension'] = os.path.splitext(name)[1]
