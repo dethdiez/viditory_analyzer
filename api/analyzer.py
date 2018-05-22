@@ -209,7 +209,7 @@ def StartDownloadVideos(items):
     queue = Queue()
     for item in items:
         queue.put(item)
-    downloader1 = Process(target = DownloadItem, args = (queue,))
+    downloader1 = Process(target = DownloadItem, args = (queue.get(),))
     downloader1.start()
     downloader1.join()
 #    pool4 = ThreadPool(1) # Sets the pool size to 4
