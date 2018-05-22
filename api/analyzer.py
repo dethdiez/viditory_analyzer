@@ -174,7 +174,7 @@ def AnalyzeVideos(owner):
         i = 0
         listItems = []
         for item in items:
-            if i < 20:
+            if i < 5:
                 print (i)
  #               print(item)
                 print('{0} ({1})'.format(item['name'], item['id']))
