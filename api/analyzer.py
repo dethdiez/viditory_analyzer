@@ -27,7 +27,6 @@ except ImportError:
     flags = None
 
 def DownloadItem(item):
-    time.sleep(3)
     print('')
     print('')
     print('')
@@ -207,7 +206,7 @@ def StartAnalyzeVideos(items):
 def StartDownloadVideos(items):
     print('StartDownload')
     pool4 = ThreadPool(1) # Sets the pool size to 4
-    pool4.imap(DownloadItem, items)
+    pool4.map(DownloadItem, items)
 
 
 def StartImageAnalysis(credentials, owner):
