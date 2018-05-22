@@ -162,7 +162,7 @@ def AnalyzeVideo(item):
 def AnalyzeVideos(owner):
     results = globalService.files().list(
         q="mimeType contains 'video' and '%s' in owners"%owner,
-        fields="nextPageToken, files(id, name)").execute()
+        fields="nextPageToken, files(id, name, md5Checksum)").execute()
     items = results.get('files', [])
     if not items:
         print('No videos found.')
