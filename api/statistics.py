@@ -73,26 +73,31 @@ def StatVideos():
 	data = posts.find({"type": "video"})
 	data1 = posts.find({"type": "video"})
 	count = 0
-	weight = 0
+	fileSize = 0
 	copies = 0
-	duration = 0
-	duration_ts = 0
+	durationMillis = 0
 	copiesId = {}
 	copiesIdList = []
-	imgFormat = {}
+	videoFormat = {}
+	brokenCount = 0
+	brokenList = []
 
 	for item in data:		
 		count = count + 1
-		weight += int(item['format']['size'])
-		duration += float(item['streams'].pop().get('duration'))
-		duration_ts += int(item['streams'].pop().get('duration_ts'))
+		fileSize += int(item['fileSize'])
+		duration += float(item['durationMillis'])
 		keys = []
 		for k in item.keys():
 			keys.append(k)
-		if (imgFormat.get(keys.pop())):
-			imgFormat[item['extension']] += 1
+		if (videoFormat.get(keys.pop())):
+			videoFormat[item['extension']] += 1
 		else:
-			imgFormat[item['extension']] = 1
+			videoFormat[item['extension']] = 1
+
+		if (item['isBroken']):
+			brokenCount += 1
+			brokenList.append(item['id'])
+
 		flag = False
 		for item1 in data1:
 			if item['id'] != item1['id']:
@@ -118,13 +123,13 @@ def StatVideos():
 
 	stat = {}
 	stat['count'] = count
-	stat['totalWeight'] = weight
-	x = weight/count
-	stat['averageWeight'] = round(x,1)
-	stat['totalDuration'] = duration
-	stat['averageDuration'] = round((duration/count),6)
-	stat['totalDuration_ts'] = duration_ts
-	stat['averageDuration_ts'] = round((duration_ts/count),1)
+	stat['totalSize'] = fileSize
+	x = fileSize/count
+	stat['averageSize'] = round(x,1)
+	stat['totaldurationMillis'] = duration
+	stat['averagedurationMillis'] = round((duration/count),6)
+	stat['brokenCount'] = brokenCount
+	stat['brokenList'] = brokenList
 	stat['copiesCount'] = copies
 	stat['copies'] = copiesId
 	stat['most_popular_video_format'] = maxFormatName

@@ -132,7 +132,11 @@ def AnalyzeVideo(item):
     data['md5'] = item['md5Checksum']
     data['name'] = item['name']
     data['id'] = item['id']
-    data['extension'] = os.path.splitext(name)[1]
+    data['extension'] = item['fileExtension']
+    data['isBroken'] = CheckBroken(name)
+    data['createdDate'] = item['createdDate']
+    data['durationMillis'] = item['videoMediaMetadata']['durationMillis']
+    data['fileSize'] = item['fileSize']
     jf = open (jsonName)
     js = jf.read()
     jd = json.loads(js)
@@ -163,7 +167,7 @@ def AnalyzeVideo(item):
 def AnalyzeVideos(owner):
     results = globalService.files().list(
         q="mimeType contains 'video' and '%s' in owners"%owner,
-        fields="nextPageToken, files(id, name, md5Checksum)").execute()
+        fields="nextPageToken, files(id, name, md5Checksum, fileExtension, fileSize, createdDate, videoMediaMetadata)").execute()
     items = results.get('files', [])
     if not items:
         print('No videos found.')
@@ -174,8 +178,8 @@ def AnalyzeVideos(owner):
         for item in items:
             if i < 20:
                 print (i)
-                print(item)
-#                print('{0} ({1}, {3})'.format(item['name'], item['id'], item['md5Checksum']))
+ #               print(item)
+                print('{0} ({1})'.format(item['name'], item['id']))
                 listItems.append(item)
                 i+=1
 
