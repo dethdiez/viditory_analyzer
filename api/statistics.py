@@ -72,6 +72,8 @@ def StatVideos():
 	posts = db.posts
 	data = posts.find({"type": "video"})
 	data1 = posts.find({"type": "video"})
+	print(data)
+
 	count = 0
 	fileSize = 0
 	copies = 0
@@ -85,7 +87,7 @@ def StatVideos():
 	for item in data:		
 		count = count + 1
 		fileSize += int(item['fileSize'])
-		duration += float(item['streams'].pop().get('duration'))
+		duration += float(item['format'].get('duration'))
 		keys = []
 		for k in item.keys():
 			keys.append(k)
