@@ -171,9 +171,10 @@ def AnalyzeVideos(owner):
         i = 0
         listItems = []
         for item in items:
-            if i < 20:
+            if i < 2:
                 print (i)
-                print('{0} ({1}, {3})'.format(item['name'], item['id'], item['md5Checksum']))
+                print(item)
+#                print('{0} ({1}, {3})'.format(item['name'], item['id'], item['md5Checksum']))
                 listItems.append(item)
                 i+=1
 
