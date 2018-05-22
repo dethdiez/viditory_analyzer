@@ -131,6 +131,7 @@ def AnalyzeVideo(item):
  #       for k1,v1 in data[k].items():
  #           if '.' in k1:
  #               data[k].pop(k1)
+    print("*********")
     print (jd['format']['filename'])
     with open (jsonName, 'w+') as res:
         json.dump(data, res)
