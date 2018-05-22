@@ -72,7 +72,9 @@ def StatVideos():
 	posts = db.posts
 	data = posts.find({"type": "video"})
 	data1 = posts.find({"type": "video"})
-	print(data)
+	data2 = posts.find({"type": "video"})
+	for document in data2: 
+		print(document)
 
 	count = 0
 	fileSize = 0

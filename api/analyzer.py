@@ -164,7 +164,7 @@ def AnalyzeVideo(item):
 
 def AnalyzeVideos(owner):
     results = globalService.files().list(
-        q="mimeType contains 'video' and '%s' in owners"%owner,
+        q="mimeType contains 'video' and '%s' in owners and title != '9215.avi' and title != '12213.avi' and title != '9830.avi' and title != '12313.avi' and title != '7929.avi' and title != 'Copy of 90.avi' and title != 'Copy of 89.avi' and title != 'Copy of 88.avi' and title != 'Copy of 87.avi' and title != 'Copy of 85.avi' and title != 'Copy of 84.avi' and title != 'Copy of 80.avi' and title != '10752.avi'"%owner,
         fields="nextPageToken, files(id, name, md5Checksum, fileExtension)").execute()
     items = results.get('files', [])
     if not items:
@@ -174,7 +174,7 @@ def AnalyzeVideos(owner):
         i = 0
         listItems = []
         for item in items:
-            if i < 70:
+            if (i < 70) and (10737418240):
                 print (i)
  #               print(item)
                 print('{0} ({1})'.format(item['name'], item['id']))
