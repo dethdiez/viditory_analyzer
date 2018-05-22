@@ -39,10 +39,10 @@ def DownloadItem(item):
     name = item['id'] + item['name']
     os.rename(item['name'], name)
 
-    analyzer = Process(target = AnalyzeVideo,args = (item,))
-    analyzer.start()
-    analyzer.join()
-#    AnalyzeVideo(item)
+#    analyzer = Process(target = AnalyzeVideo,args = (item,))
+#    analyzer.start()
+#    analyzer.join()
+    AnalyzeVideo(item)
     return True
 
 '''
