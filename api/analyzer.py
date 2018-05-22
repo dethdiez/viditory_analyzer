@@ -127,6 +127,7 @@ def AnalyzeVideo(item):
     print(hasher.hexdigest())
     data['md5'] = hasher.hexdigest()
     '''
+    print(item['md5Checksum'])
     data['md5'] = item['md5Checksum']
     data['name'] = item['name']
     data['id'] = item['id']
