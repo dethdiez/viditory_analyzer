@@ -85,7 +85,7 @@ def StatVideos():
 	for item in data:		
 		count = count + 1
 		fileSize += int(item['fileSize'])
-		duration += float(item['durationMillis'])
+		duration += float(item['format'].pop().get('duration'))
 		keys = []
 		for k in item.keys():
 			keys.append(k)

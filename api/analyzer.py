@@ -134,7 +134,6 @@ def AnalyzeVideo(item):
     data['id'] = item['id']
     data['extension'] = item['fileExtension']
     data['isBroken'] = CheckBroken(name)
-    data['durationMillis'] = item['videoMediaMetadata']['durationMillis']
     data['fileSize'] = os.stat(name).st_size
     jf = open (jsonName)
     js = jf.read()
@@ -166,7 +165,7 @@ def AnalyzeVideo(item):
 def AnalyzeVideos(owner):
     results = globalService.files().list(
         q="mimeType contains 'video' and '%s' in owners"%owner,
-        fields="nextPageToken, files(id, name, md5Checksum, fileExtension, videoMediaMetadata)").execute()
+        fields="nextPageToken, files(id, name, md5Checksum, fileExtension)").execute()
     items = results.get('files', [])
     if not items:
         print('No videos found.')
