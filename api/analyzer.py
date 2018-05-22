@@ -164,7 +164,7 @@ def AnalyzeVideo(item):
 
 def AnalyzeVideos(owner):
     results = globalService.files().list(
-        q="mimeType contains 'video' and '%s' in owners and title != '9215.avi' and title != '12213.avi'"%owner,
+        q="mimeType contains 'video' and '%s' in owners"%owner,
         fields="nextPageToken, files(id, name, md5Checksum, fileExtension)").execute()
     items = results.get('files', [])
     if not items:
@@ -173,8 +173,11 @@ def AnalyzeVideos(owner):
         print('Videos') 
         i = 0
         listItems = []
+
+        # and title !=  and title !=  and title !=  and title !=  and title !=  and title !=  and title !=  and title != ' and title !=  and title !=  and title !=  and title !=  and title != '
+        blackList = ['9215.avi','12213.avi','9830.avi','12313.avi','7929.avi','Copy of 90.avi','Copy of 89.avi','Copy of 88.avi','Copy of 87.avi','Copy of 85.avi','Copy of 84.avi','Copy of 80.avi','10752.avi']
         for item in items:
-            if (i < 70):
+            if (i < 60) and (item['name'] not in blackList):
                 print (i)
  #               print(item)
                 print('{0} ({1})'.format(item['name'], item['id']))
