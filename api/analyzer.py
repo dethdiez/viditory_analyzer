@@ -27,6 +27,9 @@ except ImportError:
     flags = None
 
 def DownloadItem(item):
+    print('')
+    print('')
+    print('')
     print('DownloadItem %s'%item['name'])
     request = globalService.files().get_media(fileId=item['id'])
     fh = io.FileIO(item['name'], mode='wb')
@@ -103,6 +106,8 @@ def AnalyzeImages(owner):
 
 
 def AnalyzeVideo(item):
+    print('')
+    print('AnalyzeVideo')
     name = item['id'] + item['name']
     jsonName = item['id'] + ".json"
     f = open(jsonName, "w")
