@@ -87,8 +87,8 @@ def test():
 def main():
     start_time = time.time()
     credentials = get_credentials()
-#    owner = "sova@auditory.ru"
-    owner = "densaflorativa@gmail.com"
+    owner = "sova@auditory.ru"
+#    owner = "densaflorativa@gmail.com"
 #    CleanDB();
 #    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
