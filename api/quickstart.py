@@ -79,7 +79,7 @@ def get_new_credentials():
 
 def start(owner):
 	start_time = time.time()
-    main(owner)
+    analyze(owner)
     print ('algorithm running time:')
     print ('-- %s seconds --'%(time.time() - start_time))
 
