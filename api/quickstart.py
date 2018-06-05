@@ -78,24 +78,25 @@ def get_new_credentials():
     return credentials
 
 def start(owner):
-    start_time = time.time()
     main()
-    print ('algorithm running time:')
-    print ('-- %s seconds --'%(time.time() - start_time))
 
 def test():
     return True
 
 #def main(owner):
 def main():
+    start_time = time.time()
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
     owner = "densaflorativa@gmail.com"
-#    CleanDB();
+    CleanDB();
 #    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
     statistics.GetStat()
+
+    print ('algorithm running time:')
+    print ('-- %s seconds --'%(time.time() - start_time))
 #    credentials = get_new_credentials()
 """    http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
