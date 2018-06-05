@@ -21,10 +21,10 @@ def analyze():
 
 @app.route('/new', methods=['POST'])
 def new():
-	task = request.args.get("task"),
+	task = request.args.get("task", type = basestring),
 	description = request.args.get("description")
 	#db.tododb.insert_one(item_doc)
-	return ('task')
+	return (task)
 
 @app.route('/test', methods=['POST'])
 def test():
