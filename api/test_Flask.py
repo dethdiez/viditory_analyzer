@@ -14,9 +14,10 @@ def auth():
 	credentials = quickstart.get_new_credentials()
 	return credentials
 
-@app.route("/analyze")
+@app.route("/analyze", methods=['POST'])
 def analyze():
-	quickstart.test()
+	owner = request.args.get("owner")
+	quickstart.start(owner[0])
 	return("Success")
 
 @app.route('/new', methods=['POST'])

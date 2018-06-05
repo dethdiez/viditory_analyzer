@@ -76,15 +76,15 @@ def get_new_credentials():
     print('Storing credentials to ' + credential_path)
     return credentials
 
-def start():
-    main()
+def start(owner):
+    main(owner)
 
 def test():
     return True
 
-def main():
+def main(owner):
     credentials = get_credentials()
-    owner = "sova@auditory.ru"
+#    owner = "sova@auditory.ru"
     CleanDB();
 #    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
