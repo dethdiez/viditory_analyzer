@@ -86,7 +86,11 @@ def start(owner):
 def test():
     return True
 
-def main(owner):
+def main():
+	analyze("densaflorativa@gmail.com")
+#	analyze("sova@auditory.ru")
+
+def analyze(owner):
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
     CleanDB();
