@@ -95,10 +95,7 @@ def analyze(owner):
 #    print('start analyze')
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
-    print ('start CleanDB')
-    CleanDB();
-    print ('finish CleanDB')
-#    pdb.set_trace()
+#    CleanDB();
 #    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
     statistics.GetStat()
