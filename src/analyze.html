@@ -21,7 +21,7 @@
 	$( document ).ready(function() {
 		$('#submit_analyze').click(function() {
 			$.ajax({ 
-				url: 'http://localhost:5000/analyze',
+				url: 'http://0.0.0.0:5000/analyze',
 				type: 'GET',
 				beforeSend: function() { console.log('start'); },
 				complete: function() { console.log("finish"); },
