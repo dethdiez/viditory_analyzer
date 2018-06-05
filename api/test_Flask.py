@@ -24,7 +24,7 @@ def new():
 	task = request.args.get("task"),
 	description = request.args.get("description")
 	#db.tododb.insert_one(item_doc)
-	return (item_doc)
+	return (task)
 
 @app.route('/test', methods=['POST'])
 def test():
