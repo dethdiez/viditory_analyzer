@@ -87,15 +87,17 @@ def test():
     return True
 
 def main():
-    print('start main')
+#    print('start main')
     analyze("densaflorativa@gmail.com")
 #    analyze("sova@auditory.ru")
 
 def analyze(owner):
-    print('start analyze')
+#    print('start analyze')
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
+	print ('start CleanDB')
     CleanDB();
+    print ('finish CleanDB')
 #    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
