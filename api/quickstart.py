@@ -79,6 +79,9 @@ def get_new_credentials():
 def start():
     main()
 
+def test():
+    return True
+
 def main():
     credentials = get_credentials()
     owner = "sova@auditory.ru"
