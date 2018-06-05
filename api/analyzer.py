@@ -179,7 +179,7 @@ def AnalyzeVideos(owner):
         for item in items:
             if (i < 45) and (item['name'] not in blackList):
                 print (i)
-                print(item['name'])
+                print(str(item['name'])
  #               print(item)
 #                print('{0} ({1})'.format(item['name'], item['id']))
                 listItems.append(item)
