@@ -89,7 +89,7 @@ def main():
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
     owner = "densaflorativa@gmail.com"
-    CleanDB();
+#    CleanDB();
 #    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
