@@ -17,7 +17,7 @@ def auth():
 @app.route("/analyze")
 def analyze():
 	quickstart.test()
-	return True
+	return()
 
 @app.route('/new', methods=['POST'])
 def new():
