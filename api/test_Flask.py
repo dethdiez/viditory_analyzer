@@ -22,11 +22,11 @@ def analyze():
 @app.route('/new', methods=['POST'])
 def new():
 	item_doc = {
-	'task': request.form['task'],
-	'description': request.form['description']
+	'task': request.args.get("task"),
+	'description': request.args.get("description")
 	}
-	db.tododb.insert_one(item_doc)
-	return redirect(url_for('start'))
+	#db.tododb.insert_one(item_doc)
+	return (item_doc)
 
 @app.route('/test', methods=['POST'])
 def test():
