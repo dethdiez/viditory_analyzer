@@ -177,7 +177,7 @@ def AnalyzeVideos(owner):
         # and title !=  and title !=  and title !=  and title !=  and title !=  and title !=  and title !=  and title != ' and title !=  and title !=  and title !=  and title !=  and title != '
         blackList = ['9215.avi','12213.avi','9830.avi','12313.avi','7929.avi','Copy of 90.avi','Copy of 89.avi','Copy of 88.avi','Copy of 87.avi','Copy of 85.avi','Copy of 84.avi','Copy of 80.avi','11025.avi','10752.avi']
         for item in items:
-            if (i < 5) and (item['name'] not in blackList):
+            if (i < 45) and (item['name'] not in blackList):
                 print (i)
  #               print(item)
                 print('{0} ({1})'.format(str(item['name']), item['id']))
