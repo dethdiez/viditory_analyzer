@@ -78,7 +78,7 @@ def get_new_credentials():
     return credentials
 
 def start(owner):
-	start_time = time.time()
+    start_time = time.time()
     analyze(owner)
     print ('algorithm running time:')
     print ('-- %s seconds --'%(time.time() - start_time))
@@ -87,8 +87,8 @@ def test():
     return True
 
 def main():
-	analyze("densaflorativa@gmail.com")
-#	analyze("sova@auditory.ru")
+    analyze("densaflorativa@gmail.com")
+#    analyze("sova@auditory.ru")
 
 def analyze(owner):
     credentials = get_credentials()
@@ -151,4 +151,4 @@ def analyze(owner):
     print('') """
 
 if __name__ == '__main__':
-    main(arg1)
+    main()
