@@ -78,24 +78,22 @@ def get_new_credentials():
     return credentials
 
 def start(owner):
-    start_time = time.time()
-    analyze(owner)
+	start_time = time.time()
+    main()
     print ('algorithm running time:')
     print ('-- %s seconds --'%(time.time() - start_time))
 
 def test():
     return True
 
+#def main(owner):
 def main():
-#    print('start main')
-    analyze('densaflorativa@gmail.com')
-#    analyze("sova@auditory.ru")
-
-def analyze(owner):
-#    print('start analyze')
+	pass
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
+    owner = "densaflorativa@gmail.com"
 #    CleanDB();
+#    pdb.set_trace()
 #    StartImageAnalysis(credentials, owner)
     StartVideoAnalysis(credentials, owner)
     statistics.GetStat()
