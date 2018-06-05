@@ -21,7 +21,7 @@
 	$( document ).ready(function() {
 		$('#submit_analyze').click(function() {
 			$.ajax({ 
-				url: 'http://analyzer.viditory.net:5000/analyze',
+				url: 'http://localhost:5000/analyze',
 				type: 'GET',
 				beforeSend: function() { console.log('start'); },
 				complete: function() { console.log("finish"); },
