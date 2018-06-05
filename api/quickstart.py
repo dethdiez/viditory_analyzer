@@ -88,7 +88,7 @@ def test():
 
 def main():
 #    print('start main')
-    analyze("densaflorativa@gmail.com")
+    analyze('densaflorativa@gmail.com')
 #    analyze("sova@auditory.ru")
 
 def analyze(owner):
