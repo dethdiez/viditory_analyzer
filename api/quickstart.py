@@ -87,10 +87,12 @@ def test():
     return True
 
 def main():
+    print('start main')
     analyze("densaflorativa@gmail.com")
 #    analyze("sova@auditory.ru")
 
 def analyze(owner):
+    print('start analyze')
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
     CleanDB();
