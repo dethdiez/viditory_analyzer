@@ -4,6 +4,7 @@ import os
 import io
 import six
 import statistics
+import time
 
 import pdb
 
@@ -77,7 +78,10 @@ def get_new_credentials():
     return credentials
 
 def start(owner):
+	start_time = time.time()
     main(owner)
+    print ('algorithm running time:')
+    print ('-- %s seconds --'%(time.time() - start_time))
 
 def test():
     return True
