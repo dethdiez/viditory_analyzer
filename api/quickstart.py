@@ -78,7 +78,7 @@ def get_new_credentials():
     return credentials
 
 def start(owner):
-	start_time = time.time()
+    start_time = time.time()
     main()
     print ('algorithm running time:')
     print ('-- %s seconds --'%(time.time() - start_time))
@@ -88,7 +88,6 @@ def test():
 
 #def main(owner):
 def main():
-	pass
     credentials = get_credentials()
 #    owner = "sova@auditory.ru"
     owner = "densaflorativa@gmail.com"
